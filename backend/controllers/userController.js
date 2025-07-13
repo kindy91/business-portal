@@ -1,6 +1,10 @@
 const userService = require('../services/userService');
 
-exports.getAll = (req, res) => res.json(userService.getAll());
+exports.getAll = (req, res) => {
+  const page = req.query.page ? parseInt(req.query.page) : 1;
+  const pageSize = req.query.pageSize ? parseInt(req.query.pageSize) : 5;
+  res.json(userService.getAll(page, pageSize));
+};
 exports.getById = (req, res) => {
   const user = userService.getById(req.params.id);
   user ? res.json(user) : res.status(404).send('Not found');

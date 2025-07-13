@@ -47,5 +47,14 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
+
+  <mat-paginator
+    [length]="total"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    [pageIndex]="page - 1"
+    (page)="onPageChange($event)"
+    *ngIf="!loading && !error && users.length"
+  ></mat-paginator>
   <div *ngIf="!loading && !error && !users.length">No users found.</div>
 </div>
