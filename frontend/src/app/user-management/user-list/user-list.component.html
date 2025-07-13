@@ -1,4 +1,28 @@
 <div class="user-list-container">
   <h2>User List</h2>
-  <!-- Future: Table of users -->
+  <div *ngIf="loading">Loading users...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+  <table *ngIf="!loading && !error && users.length" class="user-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Street</th>
+        <th>Zipcode</th>
+        <th>Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.phone }}</td>
+        <td>{{ user.street }}</td>
+        <td>{{ user.zipcode }}</td>
+        <td>{{ user.role }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="!loading && !error && !users.length">No users found.</div>
 </div>
