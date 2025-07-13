@@ -6,7 +6,15 @@ export const routes: Routes = [
     path: '',
     component: AppComponent,
     children: [
-      // Define child routes here if needed
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'user-management'
+      },
+      {
+        path: 'user-management',
+        loadChildren: () => import('./user-management/user-management.routes').then(m => m.userManagementRoutes)
+      }
     ],
   },
 ];
